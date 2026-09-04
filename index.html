@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捣蛋蛙 - 双人竞技游戏</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer" class="game-container">
+        <!-- 主菜单 -->
+        <div id="mainMenu" class="menu">
+            <h1>🐸 捣蛋蛙 🐸</h1>
+            <p class="subtitle">双人闯关竞技游戏</p>
+            <div class="menu-buttons">
+                <button onclick="startGame()" class="btn btn-primary">开始游戏</button>
+                <button onclick="showInstructions()" class="btn btn-secondary">游戏说明</button>
+                <button onclick="showLeaderboard()" class="btn btn-secondary">排行榜</button>
+            </div>
+        </div>
+
+        <!-- 游戏说明 -->
+        <div id="instructionsMenu" class="menu hidden">
+            <h1>游戏说明</h1>
+            <div class="instructions-content">
+                <h2>玩法规则</h2>
+                <ul>
+                    <li><strong>目标：</strong>先通过10个关卡，赢得比赛</li>
+                    <li><strong>控制：</strong>
+                        <ul>
+                            <li>玩家1：WASD 移动，空格跳跃，F 使用技能</li>
+                            <li>玩家2：↑↓←→ 移动，回车 跳跃，右Shift 使用技能</li>
+                        </ul>
+                    </li>
+                    <li><strong>关卡类型：</strong>
+                        <ul>
+                            <li>🌊 水流躲避：躲避流动的水</li>
+                            <li>🚀 运动平台：跳过移动的平台</li>
+                            <li>💣 炸弹躲避：避开爆炸</li>
+                            <li>⚡ 电击挑战：穿过电击区域</li>
+                        </ul>
+                    </li>
+                    <li><strong>技能系统：</strong>
+                        <ul>
+                            <li>🛡️ 盾牌：保护自己（3秒冷却）</li>
+                            <li>⚡ 冲刺：快速移动（5秒冷却）</li>
+                            <li>🌀 旋转：击败敌人（4秒冷却）</li>
+                        </ul>
+                    </li>
+                    <li><strong>得分：</strong>完成关卡获得积分，先完成奖励加成</li>
+                </ul>
+            </div>
+            <button onclick="hideInstructions()" class="btn btn-primary">返回菜单</button>
+        </div>
+
+        <!-- 排行榜 -->
+        <div id="leaderboardMenu" class="menu hidden">
+            <h1>排行榜</h1>
+            <div id="leaderboardContent" class="leaderboard-content"></div>
+            <button onclick="hideLeaderboard()" class="btn btn-primary">返回菜单</button>
+        </div>
+
+        <!-- 游戏界面 -->
+        <div id="gameScreen" class="game-screen hidden">
+            <div class="hud">
+                <div class="player-info">
+                    <div class="player player1">
+                        <span class="player-name">🐸 玩家1</span>
+                        <div class="health-bar">
+                            <div id="player1Health" class="health-fill"></div>
+                        </div>
+                        <span id="player1Score">关卡: 0/10</span>
+                    </div>
+                    <div class="level-info">
+                        <span id="levelName">第 1 关</span>
+                        <span id="levelDescription">加载中...</span>
+                    </div>
+                    <div class="player player2">
+                        <span class="player-name">🐸 玩家2</span>
+                        <div class="health-bar">
+                            <div id="player2Health" class="health-fill"></div>
+                        </div>
+                        <span id="player2Score">关卡: 0/10</span>
+                    </div>
+                </div>
+                <div class="timer">
+                    <span id="timer">0:00</span>
+                </div>
+            </div>
+
+            <canvas id="gameCanvas"></canvas>
+
+            <div id="gameMessage" class="game-message hidden"></div>
+        </div>
+
+        <!-- 游戏结束 -->
+        <div id="gameOverMenu" class="menu hidden">
+            <h1 id="gameOverTitle">游戏结束</h1>
+            <div id="gameOverContent" class="game-over-content"></div>
+            <div class="menu-buttons">
+                <button onclick="returnToMenu()" class="btn btn-primary">返回菜单</button>
+                <button onclick="startGame()" class="btn btn-secondary">再来一局</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
